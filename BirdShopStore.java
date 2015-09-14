@@ -104,7 +104,7 @@ public class BirdShopStore {
                     }
                     System.out.println("Costumer " + c.getName() + " bought " + amount + " " + p.getName().toLowerCase() +
                             end+". Accepted: "+p.getSalePrice()*amount+"$.");
-                    System.out.println(transaction.getDateOfTransaction()+"\nOperation successfull!\n");
+                    System.out.println(transaction.getDateOfTransaction()+"\nOperation successful!\n");
 
                     break;
 
