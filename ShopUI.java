@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 
 
@@ -13,6 +15,7 @@ public class ShopUI {
     private NumberFormat numberFormat = NumberFormat.getNumberInstance();
     private JFormattedTextField textFieldCounter = new JFormattedTextField(numberFormat);
     private JButton buy = new JButton("Buy");
+     String currentProductName;
 
 
     public ShopUI(BirdShopStore shop) {
@@ -43,10 +46,16 @@ public class ShopUI {
         JPanel performProducts = new JPanel(new GridLayout(shop.getProducts().size(), 0));
 
         performProducts.setBorder(BorderFactory.createLineBorder(Color.lightGray, 3));
-        for (Product p : shop.getProducts()) {
+        for (final Product p : shop.getProducts()) {
             JRadioButton radioButton = new JRadioButton(p.getName() + " " + p.getSalePrice());
             productsGroup.add(radioButton);
             performProducts.add(radioButton);
+            radioButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                   currentProductName = p.getName();
+                }
+            });
         }
 
         panel.add(nameProducts, new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, 0, new Insets(0, 0, 0, 0), 0, 0));
@@ -60,6 +69,13 @@ public class ShopUI {
 
         panel.add(buy, new GridBagConstraints(1, 3, 1, 1, 0, 0, GridBagConstraints.CENTER, 0, new Insets(0, 0, 0, 0), 0, 0));
 
+        buy.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Costumer c = new Costumer(textWindow.getText());
+                shop.buyItem(c,currentProductName,Integer.parseInt(textFieldCounter.getText()));
+            }
+        });
 
         return panel;
     }

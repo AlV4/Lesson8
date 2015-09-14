@@ -1,5 +1,7 @@
+import javax.xml.crypto.Data;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class BirdShopStore {
     private Costumer costumer;
@@ -63,7 +65,6 @@ public class BirdShopStore {
 
     public void initializationData() {
 
-        Costumer costumer = new Costumer();
         Product duck = new Product("Duck", 10, 3, 5);
         products.add(duck);
         Product eagle = new Product("Eagle", 10, 7, 10);
@@ -87,7 +88,7 @@ public class BirdShopStore {
         System.out.println();
     }
 
-    public void buyItem(String name, int amount) {
+    public void buyItem(Costumer c, String name, int amount) {
         if (name != null && amount > 0) {
             for (Product p : products) {
                 if (name == p.getName()) {
@@ -96,7 +97,16 @@ public class BirdShopStore {
                         break;
                     }
                     p.setAmount(p.getAmount() - amount);
-                    System.out.println("Operation complete!\n");
+                    Transaction transaction = new Transaction(c,p,amount,amount*p.getSalePrice(),new Date());
+                    transactions.add(transaction);
+                    String end = "s.";
+                    if(amount==1){
+                        end = ".";
+                    }
+                    System.out.println("Costumer " + c.getName() + " bought " + amount + " " + p.getName().toLowerCase() +
+                            end);
+                    System.out.println(transaction.getDateOfTransaction()+"\nOperation complete!\n");
+
                     break;
 
                 }

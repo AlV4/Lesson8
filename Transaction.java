@@ -10,6 +10,14 @@ public class Transaction {
     public Transaction() {
     }
 
+    public Transaction(Costumer costumer, Product product, int amount, double sum, Date dateOfTransaction) {
+        this.costumer = costumer;
+        this.product = product;
+        this.amount = amount;
+        this.sum = sum;
+        this.dateOfTransaction = dateOfTransaction;
+    }
+
     public Costumer getCostumer() {
         return costumer;
     }
