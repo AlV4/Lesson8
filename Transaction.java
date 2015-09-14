@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Transaction {
@@ -5,7 +6,8 @@ public class Transaction {
     private Product product;
     private int amount;
     private double sum;
-    private Date dateOfTransaction;
+    private String dateOfTransaction;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MMM.yyyy HH:mm:ss");
 
     public Transaction() {
     }
@@ -15,7 +17,7 @@ public class Transaction {
         this.product = product;
         this.amount = amount;
         this.sum = sum;
-        this.dateOfTransaction = dateOfTransaction;
+        this.dateOfTransaction = dateFormat.format(dateOfTransaction);
     }
 
     public Costumer getCostumer() {
@@ -50,11 +52,11 @@ public class Transaction {
         this.sum = sum;
     }
 
-    public Date getDateOfTransaction() {
+    public String getDateOfTransaction() {
         return dateOfTransaction;
     }
 
-    public void setDateOfTransaction(Date dateOfTransaction) {
+    public void setDateOfTransaction(String  dateOfTransaction) {
         this.dateOfTransaction = dateOfTransaction;
     }
 }

@@ -1,5 +1,6 @@
 import javax.xml.crypto.Data;
 import java.awt.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -7,6 +8,7 @@ public class BirdShopStore {
     private Costumer costumer;
     private Product product;
     private Transaction transaction;
+
 
     private ArrayList<Costumer> costumers = new ArrayList<>();
     private ArrayList<Product> products = new ArrayList<>();
@@ -99,13 +101,13 @@ public class BirdShopStore {
                     p.setAmount(p.getAmount() - amount);
                     Transaction transaction = new Transaction(c,p,amount,amount*p.getSalePrice(),new Date());
                     transactions.add(transaction);
-                    String end = "s.";
+                    String end = "s";
                     if(amount==1){
-                        end = ".";
+                        end = "";
                     }
                     System.out.println("Costumer " + c.getName() + " bought " + amount + " " + p.getName().toLowerCase() +
-                            end);
-                    System.out.println(transaction.getDateOfTransaction()+"\nOperation complete!\n");
+                            end+". Accepted: "+p.getSalePrice()*amount+"$.");
+                    System.out.println(transaction.getDateOfTransaction()+"\nOperation successfull!\n");
 
                     break;
 
@@ -113,7 +115,7 @@ public class BirdShopStore {
             }
 
         } else {
-            System.out.println("Incorrect amount!\n");
+            System.out.println("Incorrect amount or type of bird!\n");
         }
     }
 }

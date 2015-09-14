@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 
 
 public class ShopUI {
@@ -15,7 +16,8 @@ public class ShopUI {
     private NumberFormat numberFormat = NumberFormat.getNumberInstance();
     private JFormattedTextField textFieldCounter = new JFormattedTextField(numberFormat);
     private JButton buy = new JButton("Buy");
-     String currentProductName;
+    private String currentProductName;
+
 
 
     public ShopUI(BirdShopStore shop) {
